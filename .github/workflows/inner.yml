@@ -1,0 +1,17 @@
+name: Inner Workflow
+
+on:
+  workflow_run:
+
+jobs:
+  print-inputs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print commit details
+        run: |
+          echo "Commit Hash: ${{ github.event.inputs.commit-hash }}"
+          echo "Commit Author: ${{ github.event.inputs.commit-author }}"
+          echo "Commit Merger: ${{ github.event.inputs.commit-merger }}"
+          echo "Commit Message: ${{ github.event.inputs.commit-message }}"
+          echo "Commit Description: ${{ github.event.inputs.commit-description }}"

@@ -1,0 +1,37 @@
+name: Outer Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  pass-git-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Get commit details
+        id: commit-details
+        run: |
+          echo "::set-output name=commit-hash::${{ github.sha }}"
+          echo "::set-output name=commit-author::${{ github.event.pull_request.user.login }}"
+          echo "::set-output name=commit-merger::${{ github.event.pull_request.merged_by.login }}"
+          echo "::set-output name=commit-message::${{ github.event.head_commit.message }}"
+          echo "::set-output name=commit-description::${{ github.event.head_commit.message }}"
+
+      - name: Run nested workflow
+        uses: ./.github/workflows/inner.yml
+        with:
+          commit-hash: ${{ steps.commit-details.outputs.commit-hash }}
+          commit-author: ${{ steps.commit-details.outputs.commit-author }}
+          commit-merger: ${{ steps.commit-details.outputs.commit-merger }}
+          commit-message: ${{ steps.commit-details.outputs.commit-message }}
+          commit-description: ${{ steps.commit-details.outputs.commit-description }}
