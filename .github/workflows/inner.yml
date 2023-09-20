@@ -1,7 +1,24 @@
+# inner.yml
 name: Inner Workflow
 
 on:
-  workflow_run:
+  workflow_call:
+    inputs:
+      commit-hash:
+        required: false
+        type: string
+      commit-author:
+        required: false
+        type: string
+      commit-merger:
+        required: false
+        type: string
+      commit-message:
+        required: false
+        type: string
+      commit-description:
+        required: false
+        type: string
 
 jobs:
   print-inputs:
@@ -10,8 +27,8 @@ jobs:
     steps:
       - name: Print commit details
         run: |
-          echo "Commit Hash: ${{ github.event.inputs.commit-hash }}"
-          echo "Commit Author: ${{ github.event.inputs.commit-author }}"
-          echo "Commit Merger: ${{ github.event.inputs.commit-merger }}"
-          echo "Commit Message: ${{ github.event.inputs.commit-message }}"
-          echo "Commit Description: ${{ github.event.inputs.commit-description }}"
+          echo "Commit Hash: ${{ inputs.commit-hash }}"
+          echo "Commit Author: ${{ inputs.commit-author }}"
+          echo "Commit Merger: ${{ inputs.commit-merger }}"
+          echo "Commit Message: ${{ inputs.commit-message }}"
+          echo "Commit Description: ${{ inputs.commit-description }}"
