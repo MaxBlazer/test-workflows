@@ -1,0 +1,41 @@
+name: Пример действия с флажками
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Проверка репозитория
+        uses: actions/checkout@v2
+
+      - name: Мое действие
+        id: my-action
+        uses: path/to/your/action
+
+        with:
+          flags: ${{ join(steps.flags.outputs.selected, ',') }}
+
+      - name: Вывод результата
+        run: echo "Результат: ${{ steps.my-action.outputs.result }}"
+
+  flags:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:3.12
+
+    outputs:
+      selected: ${{ steps.select.outputs.selected }}
+
+    steps:
+      - name: Выбор флажков
+        id: select
+        run: |
+          echo "::set-output name=selected::$(echo $INPUT_FLAGS | tr ',' '\n' | fzf --multi)"
+        env:
+          INPUT_FLAGS: ${{ join(needs.build.outputs.flags, ',') }}
+
