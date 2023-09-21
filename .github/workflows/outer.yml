@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Get commit details
         id: commit-details
         run: |
@@ -29,3 +30,12 @@ jobs:
           echo "::set-output name=commit-merger::$commit_merger"
           echo "::set-output name=commit-message::$commit_message"
           echo "::set-output name=commit-description::$commit_description"
+
+      - name: Run nested workflow
+        uses: ./.github/workflows/inner.yml
+        with:
+          commit-hash: ${{ steps.commit-details.outputs.commit-hash }}
+          commit-author: ${{ steps.commit-details.outputs.commit-author }}
+          commit-merger: ${{ steps.commit-details.outputs.commit-merger }}
+          commit-message: ${{ steps.commit-details.outputs.commit-message }}
+          commit-description: ${{ steps.commit-details.outputs.commit-description }}
