@@ -55,4 +55,4 @@ jobs:
     steps:
       - name: Print commit details
         run: |
-          echo "Commit Hash: ${{ inputs.commit_hash }}"
+          echo Commit Hash: ${{ inputs.commit_hash }}
