@@ -50,7 +50,3 @@ jobs:
       - name: Print commit details
         run: |
           echo "Commit Hash: ${{ inputs.commit-hash }}"
-          echo "Commit Author: ${{ inputs.commit-author }}"
-          echo "Commit Merger: ${{ inputs.commit-merger }}"
-          echo "Commit Message: ${{ inputs.commit-message }}"
-          echo "Commit Description: ${{ inputs.commit-description }}"
