@@ -1,4 +1,3 @@
-# outer.yml
 name: Outer Workflow
 
 on:
