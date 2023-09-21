@@ -1,0 +1,56 @@
+# inner.yml
+name: Inner Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit-hash:
+        description: 'commit-hash'
+        required: true
+        type: string
+      commit-author:
+        description: 'commit-author'
+        required: true
+        type: string
+      commit-merger:
+        description: 'commit-merger'
+        required: true
+        type: string
+      commit-message:
+        description: 'commit-message'
+        required: true
+        type: string
+      commit-description:
+        description: 'commit-description'
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      commit-hash:
+        required: true
+        type: string
+      commit-author:
+        required: true
+        type: string
+      commit-merger:
+        required: true
+        type: string
+      commit-message:
+        required: true
+        type: string
+      commit-description:
+        required: true
+        type: string
+
+jobs:
+  print-inputs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print commit details
+        run: |
+          echo "Commit Hash: ${{ inputs.commit-hash }}"
+          echo "Commit Author: ${{ inputs.commit-author }}"
+          echo "Commit Merger: ${{ inputs.commit-merger }}"
+          echo "Commit Message: ${{ inputs.commit-message }}"
+          echo "Commit Description: ${{ inputs.commit-description }}"
