@@ -26,7 +26,7 @@ on:
         type: string
   workflow_call:
     inputs:
-      commit-hash:
+      commit_hash:
         description: 'commit-hash'
         required: true
         type: string
@@ -55,4 +55,4 @@ jobs:
     steps:
       - name: Print commit details
         run: |
-          echo "Commit Hash: ${{ inputs.commit-hash }}"
+          echo "Commit Hash: ${{ inputs.commit_hash }}"
