@@ -7,9 +7,6 @@ on:
         required: false
         type: string
         description: 'sdadasdads'
-  push:
-    branches:
-      - master
 
 jobs:
   pass-git-info:
