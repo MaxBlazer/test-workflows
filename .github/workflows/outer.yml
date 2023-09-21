@@ -32,7 +32,7 @@ jobs:
           echo "::set-output name=commit-description::$commit_description"
 
       - name: Run nested workflow
-        uses: ./.github/workflows/inner.yml
+        uses: inner.yml
         with:
           commit-hash: ${{ steps.commit-details.outputs.commit-hash }}
           commit-author: ${{ steps.commit-details.outputs.commit-author }}
