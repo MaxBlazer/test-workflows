@@ -1,4 +1,4 @@
-# inner.yml
+# actions/inner/action.yml
 name: Inner Workflow
 
 on:
@@ -27,20 +27,26 @@ on:
   workflow_call:
     inputs:
       commit-hash:
+        description: 'commit-hash'
         required: true
         type: string
       commit-author:
+        description: 'commit-author'
         required: true
         type: string
       commit-merger:
+        description: 'commit-merger'
         required: true
         type: string
       commit-message:
+        description: 'commit-message'
         required: true
         type: string
       commit-description:
+        description: 'commit-description'
         required: true
         type: string
+
 
 jobs:
   print-inputs:
