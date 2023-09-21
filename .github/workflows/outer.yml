@@ -2,7 +2,7 @@
 name: Outer Workflow
 
 on:
-  workflow_call:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -24,6 +24,7 @@ jobs:
           commit_message=$(git log --format='%s' -n 1)
           commit_description=$(git log --format='%B' -n 1)
 
+#         TODO: deprecated
           echo "::set-output name=commit-hash::$commit_hash"
           echo "::set-output name=commit-author::$commit_author"
           echo "::set-output name=commit-merger::$commit_merger"
