@@ -2,22 +2,44 @@
 name: Inner Workflow
 
 on:
+  workflow_dispatch:
+    inputs:
+      commit-hash:
+        description: 'commit-hash'
+        required: true
+        type: string
+      commit-author:
+        description: 'commit-author'
+        required: true
+        type: string
+      commit-merger:
+        description: 'commit-merger'
+        required: true
+        type: string
+      commit-message:
+        description: 'commit-message'
+        required: true
+        type: string
+      commit-description:
+        description: 'commit-description'
+        required: true
+        type: string
   workflow_call:
     inputs:
       commit-hash:
-        required: false
+        required: true
         type: string
       commit-author:
-        required: false
+        required: true
         type: string
       commit-merger:
-        required: false
+        required: true
         type: string
       commit-message:
-        required: false
+        required: true
         type: string
       commit-description:
-        required: false
+        required: true
         type: string
 
 jobs:
