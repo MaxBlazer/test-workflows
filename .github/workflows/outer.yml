@@ -2,7 +2,11 @@
 name: Outer Workflow
 
 on:
-  workflow_dispatch: ''
+  workflow_dispatch:
+    inputs:
+      instance_name:
+        required: false
+        type: string
   push:
     branches:
       - master
