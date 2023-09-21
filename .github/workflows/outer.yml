@@ -14,3 +14,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Get commit details
+        id: commit-details
+        run: |
+          commit_hash=$(git rev-parse HEAD)
+          commit_author=$(git log --format='%an' -n 1)
+          commit_merger=$(git log --format='%cn' -n 1)
+          commit_message=$(git log --format='%s' -n 1)
+          commit_description=$(git log --format='%B' -n 1)
+
+#         TODO: deprecated
+          echo "::set-output name=commit-hash::$commit_hash"
+          echo "::set-output name=commit-author::$commit_author"
+          echo "::set-output name=commit-merger::$commit_merger"
+          echo "::set-output name=commit-message::$commit_message"
+          echo "::set-output name=commit-description::$commit_description"
