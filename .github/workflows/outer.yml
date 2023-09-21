@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       test:
-        description: 'Test names (see https://docs.pytest.org/en/7.1.x/how-to/usage.html#specifying-which-tests-to-run)'
+        description: 'аываыва [Test names](https://docs.pytest.org/en/7.1.x/how-to/usage.html#specifying-which-tests-to-run)'
         required: false
         type: string
   push:
