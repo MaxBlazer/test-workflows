@@ -33,17 +33,13 @@ jobs:
           echo "commit-author=$commit_author" >> "$GITHUB_OUTPUT"
           echo "commit-merger=$commit_merger" >> "$GITHUB_OUTPUT"
           
-          {
-            echo 'commit-message<<EOF'
-            $commit_message
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-          
-          {
-            echo 'commit-description<<EOF'
-            $commit_description
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
+          echo "commit-message<<EOF" >> $GITHUB_OUTPUT
+          echo "$commit_message" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
+          echo "commit-description<<EOF" >> $GITHUB_OUTPUT
+          echo "$commit_description" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
 #      - name: Run nested workflow
 #        uses: ./.github/actions/inner
