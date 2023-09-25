@@ -29,12 +29,11 @@ jobs:
           commit_message=$(git log --format='%s' -n 1)
           commit_description=$(git log --format='%B' -n 1)
 
-          # TODO: deprecated
-          echo "::set-output name=commit-hash::$commit_hash"
-          echo "::set-output name=commit-author::$commit_author"
-          echo "::set-output name=commit-merger::$commit_merger"
-          echo "::set-output name=commit-message::$commit_message"
-          echo "::set-output name=commit-description::$commit_description"
+          echo "commit-hash=$commit_hash" >> "$GITHUB_OUTPUT"
+          echo "commit-author=$commit_author" >> "$GITHUB_OUTPUT"
+          echo "commit-merger=$commit_merger" >> "$GITHUB_OUTPUT"
+          echo "commit-message=$commit_message" >> "$GITHUB_OUTPUT"
+          echo "commit-description=$commit_description" >> "$GITHUB_OUTPUT"
 
 #      - name: Run nested workflow
 #        uses: ./.github/actions/inner
