@@ -36,11 +36,19 @@ jobs:
           echo "::set-output name=commit-message::$commit_message"
           echo "::set-output name=commit-description::$commit_description"
 
-      - name: Run nested workflow
-        uses: ./.github/actions/inner
-        with:
-          commit_hash: ${{ steps.commit-details.outputs.commit-hash }}
-          commit-author: ${{ steps.commit-details.outputs.commit-author }}
-          commit-merger: ${{ steps.commit-details.outputs.commit-merger }}
-          commit-message: ${{ steps.commit-details.outputs.commit-message }}
-          commit-description: ${{ steps.commit-details.outputs.commit-description }}
+#      - name: Run nested workflow
+#        uses: ./.github/actions/inner
+#        with:
+#          commit_hash: ${{ steps.commit-details.outputs.commit-hash }}
+#          commit-author: ${{ steps.commit-details.outputs.commit-author }}
+#          commit-merger: ${{ steps.commit-details.outputs.commit-merger }}
+#          commit-message: ${{ steps.commit-details.outputs.commit-message }}
+#          commit-description: ${{ steps.commit-details.outputs.commit-description }}
+
+      - name: Print commit details
+        run: |
+          echo "Commit Hash: ${{ steps.commit-details.outputs.commit-hash }}"
+          echo "Commit Author: ${{ steps.commit-details.outputs.commit-author }}"
+          echo "Commit Merger: ${{ steps.commit-details.outputs.commit-merger }}"
+          echo "Commit Message: ${{ steps.commit-details.outputs.commit-message }}"
+          echo "Commit Description: ${{ steps.commit-details.outputs.commit-description }}"
